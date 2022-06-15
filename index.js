@@ -1,14 +1,15 @@
 import Express from "express";
-
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import cors from 'cors'
 
+const app = Express()
+const PORT = process.env.PORT || 5000
 let data;
 const uri = "mongodb+srv://admin-rock:01893252079@clusterrock.d6ii8.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 const dbName = "DragDropCalcData"
 const collectionName = "data"
-client.connect()
+// client.connect()
 
 
 async function main() {
@@ -23,15 +24,8 @@ async function main() {
 
 
 
-const app = Express()
 
-const dataArray = [
-    { alphabet: "A", value: "1" },
-    { alphabet: "B", value: "2" },
-    { alphabet: "C", value: "3" },
-    { alphabet: "D", value: "4" },
-    { alphabet: "E", value: "5" }
-]
+
 
 var corsOptions = {
     origin: '*',
@@ -46,4 +40,4 @@ app.get('/', async (req, res) => {
 
 })
 
-app.listen('5000', () => { console.log("server is running on 5000") })
+app.listen(PORT, () => { console.log(`server is running on ${PORT}`) })
